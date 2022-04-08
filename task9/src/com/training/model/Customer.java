@@ -14,7 +14,7 @@ public class Customer {
 	}
 	public Customer(int customerId, String customerName, long phoneNumber, String email) {
 		super();
-		if(email.contains("@")||email.contains(".com") || email.contains(".org")||email.contains(".in")) {
+		if(email.contains("@")&&email.contains(".com") || email.contains(".org")||email.contains(".in")) {
 			
 		this.customerId = customerId;
 		this.customerName = customerName;
@@ -53,7 +53,7 @@ public class Customer {
 		return email;
 	}
 	public void setEmail(String email) {
-		if(email.contains("@")||email.contains(".com") || email.contains(".org")||email.contains(".in")) {
+		if(email.contains("@")&&email.contains(".com") || email.contains(".org")||email.contains(".in")) {
 			this.email=email;
 		}
 		else {
