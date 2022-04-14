@@ -1,9 +1,10 @@
-package com.training.services;
+package com.training;
 
 import java.util.List;
 
 import com.training.ifaces.CrudRepository;
 import com.training.model.Book;
+import com.training.services.BookServices;
 
 public class Application {
 public static void print(List<Book> books) {
@@ -56,7 +57,9 @@ public static void print(List<Book> books) {
 		service.update(react, reactNew);
 		System.out.println("========AFTER UPDATE=========");
 		print(service.findAll());
-		
+		System.out.println("Greater than");
+		List<Book> bookList2=((BookServices)service).getBooksGrtThan(500);
+		bookList.forEach(System.out::println);
 		
 	
 	}

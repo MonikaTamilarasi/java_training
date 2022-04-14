@@ -1,5 +1,7 @@
-package com.training.model;
+package com.training;
 import java.util.*;
+
+import com.training.model.Student;
 
 public class SetApplication {
 
