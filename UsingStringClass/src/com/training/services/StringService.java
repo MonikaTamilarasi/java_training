@@ -53,6 +53,7 @@ public class StringService {
 	}
 	public void usingCompareTo(String str1,String str2) {
 		System.out.println(str1.compareTo(str2));
+		
 	}
 	
 	public void usingStringFormat(String str1,double mark) {
