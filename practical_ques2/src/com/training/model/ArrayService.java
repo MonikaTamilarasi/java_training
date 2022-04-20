@@ -22,7 +22,7 @@ public class ArrayService {
 	 }
 	 for(int i=0;i<list.length;i++) {
 		 if(list[i]!=visited) {
-			 System.out.println("Element:"+array[i]+  "occurence:"+list[i]);
+			 System.out.println("Item :"+array[i]+"  Occurence:"+list[i]);
 		 }
 	 }
 	 
