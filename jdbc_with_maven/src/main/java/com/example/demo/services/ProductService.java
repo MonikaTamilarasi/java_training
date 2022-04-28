@@ -120,4 +120,72 @@ public class ProductService {
 		return productList;
 		
 	}
+	
+	
+	public void usingTxn(Product prd1,Product prd2) {
+		String sql="insert into moni_product values(?,?,?)";
+		try(PreparedStatement pstmt=con.prepareStatement(sql)){
+			
+			con.setAutoCommit(false);
+			pstmt.setInt(1, prd1.getProductId());
+			pstmt.setString(2, prd1.getProductName());
+			pstmt.setDouble(3,prd1.getPrice());
+			
+			pstmt.setInt(1, prd2.getProductId());
+			pstmt.setString(2, prd2.getProductName());
+			pstmt.setDouble(3,prd2.getPrice());
+			
+			int rowAdded=pstmt.executeUpdate();
+
+			if(prd2.getPrice()>prd1.getPrice()) {
+			con.commit();
+			}else {
+				con.rollback();
+			}
+			
+			System.out.println("Row Added : "+rowAdded);
+			
+		}catch (Exception e) {
+				e.printStackTrace();			
+		}
+		
+	}
+	
+	public void usingTxnWithCatchBlock(Product prd1,Invoice prd2) {
+		String addProductsql="insert into moni_product values(?,?,?)";
+		String addInvoicesql="insert into moni_invoice values(?,?,?,?)";
+
+		try(PreparedStatement pstmt=con.prepareStatement(addProductsql);
+				PreparedStatement pstmt2=con.prepareStatement(addInvoicesql)){
+			
+			con.setAutoCommit(false);
+			pstmt.setInt(1, prd1.getProductId());
+			pstmt.setString(2, prd1.getProductName());
+			pstmt.setDouble(3,prd1.getPrice());
+			
+			int productAddCount=pstmt.executeUpdate();
+			
+			pstmt2.setInt(1,prd2.getInvoiceNumber());
+			pstmt2.setString(2, prd2.getInvoiceName());
+			pstmt2.setDouble(3, prd2.getQuantity());
+			pstmt2.setInt(4, prd2.getProductref());
+			
+			int invoiceAdded=pstmt2.executeUpdate();
+			
+			con.commit();
+			System.out.println("Row Added : "+productAddCount+","+invoiceAdded);
+			
+		}catch (Exception e) {
+				e.printStackTrace();
+				
+				try {
+					con.rollback();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+		}
+		
+	}
+
 }

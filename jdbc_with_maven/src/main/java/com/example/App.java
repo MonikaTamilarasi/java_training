@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 import com.example.dao.MemberRepository;
 import com.example.demo.services.ProductService;
+import com.example.entity.Invoice;
 import com.example.entity.Member;
 import com.example.entity.Product;
 import com.example.util.ConnectionFactory;
@@ -40,9 +41,9 @@ public class App
 			 //con=DriverManager.
 					//getConnection("jdbc:oracle:thin:@10.90.1.105:1521/DEV","HR","HR");
 			 //System.out.println(con);
-			//con=ConnectionFactory.getOracleConnection();
-			 
-			 
+			con=ConnectionFactory.getOracleConnection();
+			ProductService service=new ProductService(con);
+
 //				con=ConnectionFactory.getPostgresConnection();
 //				System.out.println(con);
 
@@ -52,8 +53,18 @@ public class App
              
 			 //System.out.println("rowadded:="+toadd);
 			 
-
-			product();
+			//product();
+			
+//			Product laddu=new Product(19, "laddu", 400);
+//			Product badusha=new Product(11, "badhusa ", 300);
+//			service.usingTxn(laddu, badusha);
+			
+			
+			Product prod=new Product(12, "toys", 5000);
+			Invoice inv=new Invoice(107, "members", 4, 10);
+			service.usingTxnWithCatchBlock(prod, inv);
+			
+			
 
 			 //rep.findAll().forEach(System.out::println);
 		} catch (Exception e) {
