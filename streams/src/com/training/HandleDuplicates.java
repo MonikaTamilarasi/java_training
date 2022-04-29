@@ -9,6 +9,7 @@ public class HandleDuplicates {
 		Set<Integer> filtered = new HashSet<>();
 		List<Integer> list=ageList.stream().filter(e->!filtered.add(e)).collect(toList());
 		System.out.println(list);
+		
 	}
 
 	
