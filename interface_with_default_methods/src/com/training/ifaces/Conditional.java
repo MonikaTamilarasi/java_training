@@ -1,3 +1,4 @@
+
 package com.training.ifaces;
 @FunctionalInterface
 public interface Conditional <T>{

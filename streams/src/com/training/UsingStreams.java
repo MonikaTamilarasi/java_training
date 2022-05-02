@@ -1,7 +1,5 @@
 package com.training;
 import java.util.*;
-import java.util.stream.*;
-
 import com.training.model.Book;
 
 import static java.util.stream.Collectors.*;
@@ -13,6 +11,7 @@ public class UsingStreams {
 		bookList.stream().distinct().forEach(System.out::println);
 	}
 	
+	
 	public static void collectToSet(List<Book> bookList) {
 		
 		Set<Book> values=bookList.stream().filter(e -> e.getPrice()>500).collect(toSet());
@@ -21,7 +20,8 @@ public class UsingStreams {
 	
 	public static void collectToMap(List<Book> bookList) {
 		//Set<Book>bookSet=bookList.stream().collect(toSet());
-		Map<String,Double> values=bookList.stream().filter(e->e.getPrice()>500).distinct().collect(toMap(Book::getBookName,Book::getPrice));
+		Map<String,Double> values=bookList.stream().filter(e->e.getPrice()>500).distinct().
+				collect(toMap(Book::getBookName,Book::getPrice));
 		values.forEach((key,value)->System.out.println(key+","+value));
 	}
 	
