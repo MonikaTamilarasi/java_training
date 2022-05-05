@@ -11,7 +11,8 @@ public class Application {
 		try {
 			 con=DriverManager.
 					getConnection("jdbc:oracle:thin:@10.90.1.105:1521/DEV","HR","HR");
-			ProductService service=new ProductService(con);
+			 System.out.println(con);
+			///ProductService service=new ProductService(con);
 			
 //			Product toAdd=new Product(5,"ups",3500.00);
 //			int rowAdded =service.addProduct(toAdd);
@@ -27,11 +28,11 @@ public class Application {
 //				System.out.println("Product with given id not found");
 //			}
 			
-			int update=service.updatePriceByName("sofa", 5666);
-			System.out.println("Rows Updated : "+update);
+			//int update=service.updatePriceByName("sofa", 5666);
+			//System.out.println("Rows Updated : "+update);
 			
 			
-			service.findAll().forEach(System.out::println);
+			//service.findAll().forEach(System.out::println);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
