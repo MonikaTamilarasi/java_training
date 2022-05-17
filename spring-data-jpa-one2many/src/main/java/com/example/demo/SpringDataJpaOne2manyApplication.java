@@ -1,7 +1,5 @@
 package com.example.demo;
 
-import javax.swing.text.Utilities;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -9,7 +7,6 @@ import org.springframework.context.annotation.Bean;
 
 import com.example.demo.entity.Doctor;
 import com.example.demo.entity.Patient;
-import com.example.demo.util.bidirection.Utility;
 import com.example.demo.utils.DoctorUtils;
 
 @SpringBootApplication
@@ -23,8 +20,6 @@ public class SpringDataJpaOne2manyApplication {
 		obj.create();
 		obj.findAll();
 		
-		Utility util=ctx.getBean(Utility.class);
-		util.findDoctorFromPatient();
 		ctx.close();
 	}
 
