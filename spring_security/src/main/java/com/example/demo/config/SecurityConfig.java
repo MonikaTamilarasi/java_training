@@ -1,5 +1,7 @@
 package com.example.demo.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -11,18 +13,26 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableGlobalMethodSecurity(jsr250Enabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
-
+	
+	@Autowired
+	DataSource dataSource;
 
 	@Autowired
 	BCryptPasswordEncoder encoder;
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-	
-		auth.inMemoryAuthentication().withUser("india")
-				.password(encoder.encode("India")).roles("ADMIN").and()
-				.withUser("nepal")
-				.password(encoder.encode("nepal")).roles("GUEST");;
+		
+		
+		String sql= "select u.username,a.authority from moni_authorities a, "
+				+ "moni_users u where u.username=? and u.username=a.username";		
+//		auth.inMemoryAuthentication().withUser("india")
+//				.password(encoder.encode("India")).roles("ADMIN").and()
+//				.withUser("nepal")
+//				.password(encoder.encode("nepal")).roles("GUEST");;
+		auth.jdbcAuthentication().dataSource(dataSource)
+		.usersByUsernameQuery("select username,password,enabled from moni_users where username=?")
+		.authoritiesByUsernameQuery(sql).passwordEncoder(encoder);
 	}
 	
 	@Override
