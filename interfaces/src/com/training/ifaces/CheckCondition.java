@@ -1,3 +1,4 @@
+
 package com.training.ifaces;
 
 public interface CheckCondition {
