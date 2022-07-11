@@ -1,14 +1,10 @@
 package com.training.services;
 
 import java.util.List;
-
 import static java.util.stream.Collectors.*;
-
 import java.util.function.Predicate;
-import java.util.stream.Collector;
 import java.util.ArrayList;
 import java.util.Comparator;
-
 import com.training.ifaces.CrudRepository;
 import com.training.model.Book;
 
@@ -17,13 +13,13 @@ public class BookServices implements CrudRepository {
 	
 	public BookServices() {
 		super();
-		// TODO Auto-generated constructor stub
+		//TODO Auto-generated constructor stub
 		this.bookList=new ArrayList<>();
 	}
 
 	@Override
 	public boolean add(Book book) {
-		// TODO Auto-generated method stub
+		//TODO Auto-generated method stub
 		return bookList.add(book);
 	}
 
@@ -85,7 +81,7 @@ public class BookServices implements CrudRepository {
 				collect(toList());
 	}
 	
-	public List<Book>  sortedByNumberDesc(){
+	public List<Book> sortedByNumberDesc(){
 		return this.bookList.stream().sorted(Comparator.reverseOrder()).collect(toList());
 	}
 	

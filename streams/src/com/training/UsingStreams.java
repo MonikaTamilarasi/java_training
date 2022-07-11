@@ -58,7 +58,7 @@ public class UsingStreams {
 		
 		List<Book> bookList=Arrays.asList(java,spring,maven,html,python,mavenNew,htmlNew);
 		
-		int key=6;
+		int key=2;
 		switch (key) {
 		case 1:
 			useDinstinct(bookList);
