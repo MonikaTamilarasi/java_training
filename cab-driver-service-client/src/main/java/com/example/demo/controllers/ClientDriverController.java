@@ -2,6 +2,8 @@ package com.example.demo.controllers;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,18 +59,19 @@ public class ClientDriverController {
 		return driver+trips;
 	}
 	
-	@GetMapping(path = "/driver/trips/json/{id}")
-	public TripDto getDriverTripsJson(@PathVariable("id") int id) {
-		CabDriver driver = this.template.getForObject("http://CAB-DRIVER-SERVICE/api/v1/drivers/"+id, CabDriver.class);
+	@GetMapping(path = "/driver/trips/{id}")
+	public TripDto getDriverTrips1(@PathVariable("id")int id) {
 
-		TripDetail[] trips =  this.template.getForObject("http://TRIP-DETAIL-SERVICE/api/v1/details/srch/"+id, TripDetail[].class);
-		dto.setDriver(driver);
-		List<TripDetail> detailSet = Arrays.asList(trips);
-		dto.setTrips(detailSet);
+	CabDriver driver=this.template.getForObject("http://cab-driver-service/api/v1/drivers/"+id,CabDriver.class);
 
-		return dto;
-		}		
+	TripDetail[] trips=this.template.getForObject("http://trip-driver-service/api/v1/details/srch/"+id,TripDetail[].class);
+
+	dto.setDriver(driver);
+	//List<TripDetail> detailSet = Arrays.asList(trips);
+	Set<TripDetail> detailSet = Arrays.stream(trips).collect(Collectors.toSet());
+	dto.setTrips(detailSet);
+
+	return dto;	
 	
-	
-	
+	}
 }

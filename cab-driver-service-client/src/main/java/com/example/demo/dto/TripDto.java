@@ -1,6 +1,7 @@
 package com.example.demo.dto;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
@@ -19,5 +20,5 @@ import lombok.NoArgsConstructor;
 public class TripDto {
 	
 	private CabDriver driver;
-	private List<TripDetail> trips;
+	private Set<TripDetail> trips;
 }
