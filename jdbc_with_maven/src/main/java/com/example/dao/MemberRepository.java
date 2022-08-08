@@ -11,15 +11,11 @@ import java.time.LocalDate;
 public class MemberRepository implements CrudRepository<Member> {
 	
 	private Connection con;
-	
+	/* constructor*/
 	public MemberRepository(Connection con) {
 		super();
 		this.con = con;
 	}
-
-	
-	
-		
 
 	public List<Member> findAll() {
 		List<Member> memberList=new ArrayList<Member>();

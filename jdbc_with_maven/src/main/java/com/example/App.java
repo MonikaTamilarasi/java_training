@@ -16,7 +16,7 @@ import com.example.util.ConnectionFactory;
 
 public class App 
 {
-	
+
 	public static void member() {
 		
 	}
