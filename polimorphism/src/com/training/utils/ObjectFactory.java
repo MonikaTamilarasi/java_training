@@ -19,8 +19,8 @@ public class ObjectFactory {
 			return null;
 		}
 	}
-	public double getValue(Conditional obj ,Object value) {
-		boolean result=obj.test(value);
+	public double getValue(Conditional obj ,Object moni) {
+		boolean result=obj.test(moni);
 		double travelAllowance=1000;
 		if(result) {
 			travelAllowance=2000;

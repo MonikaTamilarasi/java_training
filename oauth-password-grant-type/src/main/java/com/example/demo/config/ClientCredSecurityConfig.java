@@ -18,7 +18,6 @@ public class ClientCredSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 	
-	
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -26,8 +25,7 @@ public class ClientCredSecurityConfig extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
        .antMatchers("/login").permitAll()
        .antMatchers("/oauth/authorize")
-        .authenticated();
-    
+        .authenticated();   
 		   }
    
 

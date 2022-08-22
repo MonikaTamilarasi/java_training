@@ -11,7 +11,7 @@ public class Application {
 		ObjectFactory factory=new NewObjectFactory();
 		Conditional profObj=factory.getconditional(1);
 		Conditional studObj=factory.getconditional(2);
-		
+	
 		
 		System.out.println("Allowance:="+factory.getValue(profObj, "chennai"));
 		System.out.println("Allowance:="+factory.getValue(studObj, "89"));
